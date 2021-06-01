@@ -5,6 +5,6 @@
 
 public class Main {
     public static void main(String[] args) {
-        int num[] = {4,2,6,2,65}
+        int num[] = {4,2,6,2,65};
     }
 }

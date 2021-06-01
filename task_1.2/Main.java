@@ -4,7 +4,6 @@
 Примечание: комментировать строки с объявлением переменных нельзя.
 */
 // Пример комментария
-
 public class Main {
     public static void main(String[] args) {
         int a = 3;
