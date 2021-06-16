@@ -18,7 +18,8 @@ public class Main {
                 else if(i==10){
                     String ip = proxy.split(":")[0];
                     String port = proxy.split(":")[1];
-                    checkProxy(ip, Integer.parseInt(port));
+                    CheckProxy checkProxy = new CheckProxy(ip, Integer.parseInt(port));
+                    checkProxy.start();
                     proxy = "";
                 }else if(i!=9){
                     proxy += (char) i;
@@ -32,7 +33,37 @@ public class Main {
 
     }
 
-    public static void checkProxy(String ip, int port){
+    /*public static void checkProxy(String ip, int port){
+        try {
+            Proxy proxy = new Proxy(Proxy.Type.HTTP,new InetSocketAddress(ip,port));
+            URL url = new URL("https://vozhzhaev.ru/test.php");
+            URLConnection urlConnection = url.openConnection(proxy);
+            InputStream is = urlConnection.getInputStream();
+            InputStreamReader reader = new InputStreamReader(is);
+            int i;
+            StringBuilder result = new StringBuilder();
+            while ((i=reader.read()) != -1){
+                result.append((char)i);
+            }
+            System.out.println(result);
+        } catch (IOException exception) {
+            System.out.println(ip+" - не работает!");
+        }
+    }*/
+}
+
+class CheckProxy extends Thread{
+    String ip;
+    int port;
+
+    public CheckProxy(String ip, int port) {
+        super();
+        this.ip = ip;
+        this.port = port;
+    }
+
+    @Override
+    public void run(){
         try {
             Proxy proxy = new Proxy(Proxy.Type.HTTP,new InetSocketAddress(ip,port));
             URL url = new URL("https://vozhzhaev.ru/test.php");
@@ -49,4 +80,5 @@ public class Main {
             System.out.println(ip+" - не работает!");
         }
     }
+
 }
